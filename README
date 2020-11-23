@@ -1,0 +1,36 @@
+ # running the system
+ 1. install node_modules
+ npm install
+ 2. compile typscript to js
+ tsc
+ 3. run bot
+ node .
+
+# This is the data response format from wikidata
+ {
+  "head" : {
+    "vars" : [ "city", "label" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "city" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q484799"
+      },
+      "label" : {
+        "xml:lang" : "en",
+        "type" : "literal",
+        "value" : "Marbella"
+      }
+    } ]
+  }
+}
+
+//TODO:
+// remove
+// help commands - link to readme on github?
+// cleanup readme
+// post to github
+
+//TODO low priority/fun:
+// add emojis to saved/destroyed messages

@@ -1,0 +1,7 @@
+# ignore things that aren't code, so we can see true change
+# output js after compiling ts, don't need that
+dist
+# node modules need installed, but don't check them in
+node_modules
+# this is the DB, def don't check that in
+citydb.json

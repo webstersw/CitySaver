@@ -30,9 +30,17 @@ client.on('message', message => {
 			case "list":
 				getList(args, message);
 				break;
-			case "help":		
+            case "alist":
+                getAlphabeticalList(args, message);
+                break;
+            case "deletexerath":
+                message.channel.send('Xerath Has been permanently deleted. Good Riddance.');
+                break;
+			case "help":
+			    message.channel.send('Try these commands: save, destroy, count, list, alist, and deletexerath.');
+			    break;
 			default:
-				message.channel.send(`I can't do that. Try 'save' or 'destroy', followed by a city name`);
+				message.channel.send(`I can't do that. Try 'save' or 'destroy', followed by a city name.`);
 				break;
 		}
 	}

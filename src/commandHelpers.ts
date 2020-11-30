@@ -14,20 +14,29 @@ export const handleCity = async (args: string[], message: Message, saved: boolea
             message.channel.send(`Yay, we saved the city of ${city}!`)
         }
         else {
-            message.channel.send(`The city of ${city} was destroyed. You hate to see it`)
+            message.channel.send(`The city of ${city} was destroyed. You hate to see it.`)
         }
     }
 };
 
 export const getList = (args: string[], message: Message): void => {
-    const saved = getCityList(true);
-    const destroyed = getCityList(false);
+    const saved = getCityList(true).sort((n1,n2) => n1 - n2);
+    const destroyed = getCityList(false).sort((n1,n2) => n1 - n2);;
     message.channel.send(`Saved cities: ${saved}`);
     message.channel.send(`Destroyed cities: ${destroyed}`);
+};
+
+export const getAlphabeticalList = (args: string[], message: Message): void => {
+        const saved = getCityList(true);
+        const destroyed = getCityList(false);
+        message.channel.send(`Saved cities: ${saved}`);
+        message.channel.send(`Destroyed cities: ${destroyed}`);
 };
 
 export const getCount = async (message: Message): Promise<void> => {
     const saved = countCities(true);
     const destroyed = countCities(false);
-    message.channel.send(`${saved} ${saved === 1 ? 'city has' : 'cities have'} been saved!  ${destroyed} ${destroyed === 1 ? 'city has' : 'cities have'} been destoyed`);
+    message.channel.send(`${saved} ${saved === 1 ? 'city has' : 'cities have'} been saved!  ${destroyed} ${destroyed === 1 ? 'city has' : 'cities have'} been destroyed.`);
+
+
 };

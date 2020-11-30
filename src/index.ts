@@ -40,7 +40,7 @@ client.on('message', message => {
 			    message.channel.send('Try these commands: save, destroy, count, list, alist, and deletexerath.');
 			    break;
 			default:
-				message.channel.send(`I can't do that. Try 'save' or 'destroy', followed by a city name.`);
+				message.channel.send(`I can't do that. Try "!city help"`);
 				break;
 		}
 	}

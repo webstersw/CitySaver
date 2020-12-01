@@ -18,30 +18,30 @@ client.on('message', message => {
 
 	if (command) {
 		switch (command.toLowerCase()) {
-			case "save":
-				handleCity(args, message, true);
-				break;
-			case "destroy":
-				handleCity(args, message, false);
-				break;
-			case "count":
-				getCount(message);
-				break;
-			case "list":
-				getList(args, message);
-				break;
+            case "save":
+                handleCity(args, message, true);
+                break;
+            case "destroy":
+                handleCity(args, message, false);
+                break;
+            case "count":
+                getCount(message);
+                break;
+            case "list":
+                getList(args, message);
+                break;
             case "alist":
                 getAlphabeticalList(args, message);
                 break;
             case "deletexerath":
                 message.channel.send('Xerath Has been permanently deleted. Good Riddance.');
                 break;
-			case "help":
-			    message.channel.send('Try these commands: save, destroy, count, list, alist, and deletexerath.');
-			    break;
-			default:
-				message.channel.send(`I can't do that. Try "!city help"`);
-				break;
+            case "help":
+                message.channel.send('Try these commands: save, destroy, count, list, alist, and deletexerath.');
+                break;
+            default:
+                message.channel.send(`I can't do that. Try "!city help"`);
+                break;
 		}
 	}
 });

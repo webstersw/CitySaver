@@ -21,25 +21,25 @@ client.on('message', message => {
 			case "save":
 				handleCity(args, message, true);
 				break;
-		    	case "destroy":
+			case "destroy":
 				handleCity(args, message, false);
 				break;
-		    	case "count":
+			case "count":
 				getCount(message);
 				break;
-		    	case "list":
+			case "list":
 				getList(args, message);
 				break;
-		    	case "alist":
+			case "alist":
 				getAlphabeticalList(args, message);
 				break;
-		    	case "deletexerath":
+			case "deletexerath":
 				message.channel.send('Xerath Has been permanently deleted. Good Riddance.');
 				break;
-		    	case "help":
+			case "help":
 				message.channel.send('Try these commands: save, destroy, count, list, alist, and deletexerath.');
 				break;
-		    	default:
+			default:
 				message.channel.send(`I can't do that. Try "!city help"`);
 				break;
 		}

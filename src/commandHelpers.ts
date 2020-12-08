@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import getCity from './getCity.js';
-import { addCity, doesCityExist, countCities, getCityList } from './dbHelper'
+import { addCity, doesCityExist, countCities, getCityList, getCityArray} from './dbHelper'
 
 export const handleCity = async (args: string[], message: Message, saved: boolean): Promise<void> => {
     var city = await getCity(args)
@@ -27,8 +27,8 @@ export const getList = (args: string[], message: Message): void => {
 };
 
 export const getAlphabeticalList = (args: string[], message: Message): void => {
-    const saved = getCityList(true).sort((n1,n2) => n1 - n2);
-    const destroyed = getCityList(false).sort((n1,n2) => n1 - n2);
+    const saved = getCityArray(true).sort();
+    const destroyed = getCityArray(false).sort();
     message.channel.send(`Saved cities: ${saved}`);
     message.channel.send(`Destroyed cities: ${destroyed}`);
 };

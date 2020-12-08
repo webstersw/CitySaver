@@ -1,8 +1,9 @@
 import { Client } from 'discord.js';
 import config from './config';
-import { getCount, handleCity, getList } from './commandHelpers';
+import { getCount, handleCity, getList, getAlphabeticalList } from './commandHelpers';
 
 const client = new Client();
+const tok = "Nzg1NjY1OTg0NTUwOTI4Mzg0.X87Kdw.gb3G-4AtTNiAixQdIyIhemuS3kQ";
 
 client.once('ready', () => {
 	console.log('ready at: ' + Date.now);

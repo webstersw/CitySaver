@@ -32,7 +32,7 @@ export const getCityList = (saved: boolean): string => {
     return cities.join(', ');
 };
 
-const getCityArray = (saved: boolean): string[] => {
+export const getCityArray = (saved: boolean): string[] => {
     const table = saved ? dbConsts.saved : dbConsts.destroyed;
     const cities = db.getInstance().getData(`/${table}`);
    

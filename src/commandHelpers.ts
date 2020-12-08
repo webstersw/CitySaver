@@ -27,8 +27,10 @@ export const getList = (args: string[], message: Message): void => {
 };
 
 export const getAlphabeticalList = (args: string[], message: Message): void => {
-    const saved = getCityArray(true).sort();
-    const destroyed = getCityArray(false).sort();
+    var saved = JSON.parse(JSON.stringify(getCityArray(true)));
+    saved.sort();
+    var destroyed = JSON.parse(JSON.stringify(getCityArray(false)));
+    destroyed.sort();
     message.channel.send(`Saved cities: ${saved}`);
     message.channel.send(`Destroyed cities: ${destroyed}`);
 };

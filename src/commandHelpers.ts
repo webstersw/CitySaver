@@ -27,12 +27,12 @@ export const getList = (args: string[], message: Message): void => {
 };
 
 export const getAlphabeticalList = (args: string[], message: Message): void => {
-    var saved = JSON.parse(JSON.stringify(getCityArray(true)));
-    saved.sort();
-    var destroyed = JSON.parse(JSON.stringify(getCityArray(false)));
-    destroyed.sort();
-    message.channel.send(`Saved cities: ${saved}`);
-    message.channel.send(`Destroyed cities: ${destroyed}`);
+    var alphaSaved = Object.create(getCityArray(true));
+    var alphaDestroyed = Object.create(getCityArray(false));
+    alphaSaved = alphaSaved.sort().join(', ');
+    alphaDestroyed = alphaDestroyed.sort().join(', ');
+    message.channel.send(`Saved cities: ${alphaSaved}`);
+    message.channel.send(`Destroyed cities: ${alphaDestroyed}`);
 };
 
 export const getCount = async (message: Message): Promise<void> => {

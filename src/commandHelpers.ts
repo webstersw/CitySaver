@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import getCity from './getCity.js';
-import { addCity, doesCityExist, countCities, getCityList } from './dbHelper'
+import { addCity, doesCityExist, countCities, getCityList, getCityArray} from './dbHelper'
 
 export const handleCity = async (args: string[], message: Message, saved: boolean): Promise<void> => {
     var city = await getCity(args)
@@ -14,7 +14,7 @@ export const handleCity = async (args: string[], message: Message, saved: boolea
             message.channel.send(`Yay, we saved the city of ${city}!`)
         }
         else {
-            message.channel.send(`The city of ${city} was destroyed. You hate to see it`)
+            message.channel.send(`The city of ${city} was destroyed. You hate to see it.`)
         }
     }
 };
@@ -26,8 +26,18 @@ export const getList = (args: string[], message: Message): void => {
     message.channel.send(`Destroyed cities: ${destroyed}`);
 };
 
+export const getAlphabeticalList = (args: string[], message: Message): void => {
+    var alphaSaved = Object.create(getCityArray(true));
+    var alphaDestroyed = Object.create(getCityArray(false));
+    alphaSaved = alphaSaved.sort().join(', ');
+    alphaDestroyed = alphaDestroyed.sort().join(', ');
+    message.channel.send(`Saved cities: ${alphaSaved}`);
+    message.channel.send(`Destroyed cities: ${alphaDestroyed}`);
+};
+
 export const getCount = async (message: Message): Promise<void> => {
     const saved = countCities(true);
     const destroyed = countCities(false);
-    message.channel.send(`${saved} ${saved === 1 ? 'city has' : 'cities have'} been saved!  ${destroyed} ${destroyed === 1 ? 'city has' : 'cities have'} been destoyed`);
+    message.channel.send(`${saved} ${saved === 1 ? 'city has' : 'cities have'} been saved!  ${destroyed} ${destroyed === 1 ? 'city has' : 'cities have'} been destroyed.`);
+
 };

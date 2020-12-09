@@ -5,3 +5,5 @@ dist
 node_modules
 # this is the DB, def don't check that in
 citydb.json
+# local Intellij configs
+.idea/

@@ -26,11 +26,18 @@
   }
 }
 
+# this is an example of a blank citydb.json
+{
+  "saved": [
+  ],
+  "destroyed": [
+  ]
+}
+
 //TODO:
 // remove
 // help commands - link to readme on github?
 // cleanup readme
-// post to github
 
 //TODO low priority/fun:
 // add emojis to saved/destroyed messages

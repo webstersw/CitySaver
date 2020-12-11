@@ -47,7 +47,7 @@ export const doGamble =(saved: boolean, message: Message): void =>{    // maybe 
    if (saved){
     const saveList = getCityList(false);
     i = getRandomInt(countCities(false));
-    var savedCities = [saveList[i],saveList[i+1],saveList[i+2]];
+    var savedCities = [saveList[i]];
     message.channel.send(`Cities reclaimed: ${savedCities}`);
     for (l = 0; l < savedCities.length; l++){
     cityMover(savedCities[l]);
@@ -55,8 +55,8 @@ export const doGamble =(saved: boolean, message: Message): void =>{    // maybe 
     }
     if(!saved) {
         const destroyList = getCityList(true);
-        i = getRandomInt(countCities(true))
-        var destroyCities = [destroyList[i],destroyList[i+1],destroyList[i+2]];
+        i = getRandomInt(countCities(true));
+        var destroyCities = [destroyList[i]];
         message.channel.send(`Cities mismanaged: ${destroyCities}`);
         for (var l = 0; l < destroyCities.length; l++){
             cityMover(destroyCities[l]);

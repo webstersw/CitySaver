@@ -11,7 +11,12 @@ export const addCity = (city: string, saved: boolean): void => {
     const table = saved ? dbConsts.saved : dbConsts.destroyed;
     db.getInstance().push(`/${table}[]`, city);
 };
+// Matts City Remover
+export const removeCity = (city: string, saved: boolean): void => {
+    const table = saved ? dbConsts.saved : dbConsts.destroyed;
+    db.getInstance().delete(city);
 
+};
 export const doesCityExist = (city: string): boolean => {
     const savedList = db.getInstance().getData(`/${dbConsts.saved}`);
     const destroyedList = db.getInstance().getData(`/${dbConsts.destroyed}`);
@@ -37,4 +42,19 @@ export const getCityArray = (saved: boolean): string[] => {
     const cities = db.getInstance().getData(`/${table}`);
    
     return cities;
+};
+// Matts City Mover
+export const cityMover = (city: string): void => {
+    const savedList = db.getInstance().getData(`/${dbConsts.saved}`);
+    const destroyedList = db.getInstance().getData(`/${dbConsts.destroyed}`);
+
+    const existsInSaved = Object.keys(savedList).length !== 0 && savedList.includes(city);
+    const existsInDestroyed = Object.keys(destroyedList).length !== 0 && destroyedList.includes(city);
+    if(existsInSaved){
+        removeCity(city, true)
+        addCity(city, false)
+    }else if(existsInDestroyed){
+        removeCity(city, false)
+        addCity(city, true)
+    }
 };

@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import getCity from './getCity.js';
-import { addCity, doesCityExist, countCities, getCityList, getCityArray} from './dbHelper'
+import { addCity, doesCityExist, countCities, getCityList, getCityArray, cityMover} from './dbHelper'
 
 export const handleCity = async (args: string[], message: Message, saved: boolean): Promise<void> => {
     var city = await getCity(args)
@@ -41,3 +41,32 @@ export const getCount = async (message: Message): Promise<void> => {
     message.channel.send(`${saved} ${saved === 1 ? 'city has' : 'cities have'} been saved!  ${destroyed} ${destroyed === 1 ? 'city has' : 'cities have'} been destroyed.`);
 
 };
+//Matt's City Gambler
+export const doGamble =(saved: boolean, message: Message): void =>{    // maybe add a variable to wager saved and un saved
+   var i = 0;
+   if (saved){
+    const saveList = getCityList(false);
+    i = getRandomInt(countCities(false));
+    var savedCities = [saveList[i],saveList[i+1],saveList[i+2]];
+    message.channel.send(`Cities reclaimed: ${savedCities}`);
+    for (l = 0; l < savedCities.length; l++){
+    cityMover(savedCities[l]);
+    }
+    }
+    if(!saved) {
+        const destroyList = getCityList(true);
+        i = getRandomInt(countCities(true))
+        var destroyCities = [destroyList[i],destroyList[i+1],destroyList[i+2]];
+        message.channel.send(`Cities mismanaged: ${destroyCities}`);
+        for (var l = 0; l < destroyCities.length; l++){
+            cityMover(destroyCities[l]);
+        };
+    }
+    else {
+    message.channel.send(`ERROR: unknown in Gambler`)
+    };
+};
+//yea i ripped it WHAT you expect me to learn new shit when its right here AHAHAHHA good joke
+const getRandomInt = (max: number) => {
+      return Math.floor(Math.random() * Math.floor(max));
+  };

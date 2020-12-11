@@ -1,6 +1,6 @@
 import { Client } from 'discord.js';
 import config from './config';
-import { getCount, handleCity, getList, getAlphabeticalList } from './commandHelpers';
+import { getCount, handleCity, getList, getAlphabeticalList, doGamble } from './commandHelpers';
 
 const client = new Client();
 
@@ -24,6 +24,12 @@ client.on('message', message => {
 			case "destroy":
 				handleCity(args, message, false);
 				break;
+			case "gamblesave":
+                doGamble(true, message);
+                break;
+            case "gambledestroy":
+                doGamble(false, message);
+                break;
 			case "count":
 				getCount(message);
 				break;
@@ -37,7 +43,7 @@ client.on('message', message => {
 				message.channel.send('Xerath Has been permanently deleted. Good Riddance.');
 				break;
 			case "help":
-				message.channel.send('Try these commands: save, destroy, count, list, alist, and deletexerath.');
+				message.channel.send('Try these commands: save, destroy, count, list, alist, deletexerath, gamblesave, and gambledestroy.');
 				break;
 			default:
 				message.channel.send(`I can't do that. Try "!city help"`);

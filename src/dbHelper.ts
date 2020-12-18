@@ -13,10 +13,11 @@ export const addCity = (city: string, saved: boolean): void => {
 };
 // Matts City Remover
 export const removeCity = (city: string, saved: boolean): void => {
-    const table = saved ? dbConsts.saved : dbConsts.destroyed;
-    db.getInstance().delete(city);
-
+    const table = saved ? getCityArray(saved) : getCityArray(saved);
+    const index = table.indexOf(city);
+    table.splice(index, 1);
 };
+
 export const doesCityExist = (city: string): boolean => {
     const savedList = db.getInstance().getData(`/${dbConsts.saved}`);
     const destroyedList = db.getInstance().getData(`/${dbConsts.destroyed}`);
@@ -53,8 +54,9 @@ export const cityMover = (city: string): void => {
     if(existsInSaved){
         removeCity(city, true)
         addCity(city, false)
-    }else if(existsInDestroyed){
+    }
+    else if (existsInDestroyed){
         removeCity(city, false)
         addCity(city, true)
-    }
+    };
 };

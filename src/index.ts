@@ -8,7 +8,7 @@ client.once('ready', () => {
 	console.log('ready at: ' + Date.now);
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login("Nzg5MjYwNzg2MzMzNTE1ODI2.X9veYw.OV-Qi1llZjyFmIHmYy-yRLL13hU");
 
 client.on('message', message => {
 	if (!message.content.startsWith(config.commandPrefix) || message.author.bot) return;

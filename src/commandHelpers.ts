@@ -45,22 +45,18 @@ export const getCount = async (message: Message): Promise<void> => {
 export const doGamble =(saved: boolean, message: Message): void =>{    // maybe add a variable to wager saved and un saved
    var i = 0;
    if (saved){
-    const saveList = getCityList(false);
+    const saveList = getCityArray(false);
     i = getRandomInt(countCities(false));
     var savedCities = [saveList[i]];
     message.channel.send(`Cities reclaimed: ${savedCities}`);
-    for (l = 0; l < savedCities.length; l++){
-    cityMover(savedCities[l]);
+    cityMover(savedCities[0]);
     }
-    }
-    if(!saved) {
-        const destroyList = getCityList(true);
+    else if(!saved) {
+        const destroyList = getCityArray(true);
         i = getRandomInt(countCities(true));
         var destroyCities = [destroyList[i]];
         message.channel.send(`Cities mismanaged: ${destroyCities}`);
-        for (var l = 0; l < destroyCities.length; l++){
-            cityMover(destroyCities[l]);
-        };
+            cityMover(destroyCities[0]);
     }
     else {
     message.channel.send(`ERROR: unknown in Gambler`)
